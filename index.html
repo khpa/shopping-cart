@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <h1>Shopping Cart</h1>
+    <script>
+        var cart = [];
+
+        var Item = function (name, price, count) {
+            this.name = name;
+            this.price = price;
+            this.count = count;
+        };
+
+        function addItemToCart(name, price, count) {
+            for (var i in cart) {
+                if (cart[i].name === name) {
+                    cart[i].count += count;
+                    return;
+                }
+            }
+            var item = new Item(name, price, count);
+            cart.push(item);
+        }
+
+function removeItemFromCart (name){
+    for (var i in cart) {
+        if (cart[i].name === name) {
+        cart[i].count --;
+        if(cart[i].count === 0){
+            cart.splice(i,1);
+        }
+        break;
+        }
+    }
+}
+
+function removeItemFromCartAll (name) {
+    for (var i in cart) {
+        if (cart[i].name === name){
+            cart.splice(i, 1);
+            break;
+        }
+    }
+}
+
+function clearCart () {
+    cart = [];
+}
+
+function countCart () {
+    var totalCount = 0;
+    for (var i in cart){
+totalCount += cart[i].count;
+    }
+    return totalCount;
+}
+
+function totalCart() {
+    var totalCost = 0;
+    for (var i in cart){
+        totalCost+=cart[i].price
+    }
+    return totalCost;
+}
+
+console.log("cart before remove: ",cart);
+removeItemFromCart("Apple");
+
+addItemToCart("Apple", 1.22, 1);
+addItemToCart("Pear", 1.72, 3);
+addItemToCart("Apple", 1.22, 1);
+addItemToCart("Apple", 1.22, 3);
+addItemToCart("Banana", 1.0, 1);
+addItemToCart("Car", 34.00, 1);
+addItemToCart("Plush Toy", 5.82, 1);
+addItemToCart("Sticky Notes", 4, 3);
+console.log(cart.length);
+
+//removeItemFromCartAll ("Car")
+
+console.log(cart.length);
+
+console.log(countCart());
+console.log(totalCart());
+
+
+// removeItemFromCart("Apple");
+// removeItemFromCart("Apple");
+// removeItemFromCart("Apple");
+// removeItemFromCart("Apple");
+
+
+
+//functions list:
+//addItemToCart(name, price, count)
+//removeItemFromCart (name) //removes one item
+//removeItemFromCartAll(name) //removes all
+//clearCart ()
+//countCart() -> return total count
+//totalCart() -> return total cost 
+//listCart () -> array of Item
+//saveCart()
+//loadCart()
+
+
+    </script>
+</body>
+
+</html>
