@@ -1,3 +1,8 @@
+
+
+
+//shopping cart functions
+
 var cart = [];
 
         var Item = function (name, price, count) {  
@@ -10,6 +15,7 @@ var cart = [];
             for (var i in cart) {
                 if (cart[i].name === name) {
                     cart[i].count += count;
+                    saveCart();
                     return;
                 }
             }
@@ -57,9 +63,9 @@ totalCount += cart[i].count;
 function totalCart() {
     var totalCost = 0;
     for (var i in cart){
-        totalCost+=cart[i].price
+        totalCost+=cart[i].price*cart[i].count;
     }
-    return totalCost;
+    return totalCost.toFixed(2);
 }
 
 function listCart(){
@@ -70,6 +76,9 @@ function listCart(){
     for (var p in item) {
         itemCopy[p]=item[p];
     }
+    itemCopy.total = item.price * item.count;
+    var id = ~~i+1;
+    itemCopy.id = id;
     cartCopy.push(itemCopy);
     }
     return cartCopy;
@@ -85,8 +94,10 @@ function loadCart() {
     console.log(cart);
 }
 
-console.log("cart before remove: ",cart);
-removeItemFromCart("Apple");
+loadCart();
+
+//console.log("cart before remove: ",cart);
+//removeItemFromCart("Apple");
 
 // addItemToCart("Apple", 1.22, 1);
 // addItemToCart("Pear", 1.72, 3);
@@ -96,9 +107,6 @@ removeItemFromCart("Apple");
 // addItemToCart("Car", 34.00, 1);
 // addItemToCart("Plush Toy", 5.82, 1);
 // addItemToCart("Sticky Notes", 4, 3);
-
-//loadCart();
-
 
 
 //functions list:
